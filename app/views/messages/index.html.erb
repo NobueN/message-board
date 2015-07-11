@@ -7,7 +7,8 @@
   <% @messages.each do |message| %>
     <span class="label label-info"><%= message.name %></span>
     <%= message.body %>
-    (<%= link_to "edit" , edit_message_path(message)%>)
+    (<%= link_to "edit" , edit_message_path(message)%>
+    <%= link_to "destroy" , message , method: :delete , data:{confirm: '削除してよろしいですか？'}%>)
     <br>
     <% end %>
   </div>
@@ -16,13 +17,7 @@
 <% #部分テンプレを読み込んでいる%>
 <%= render 'form' %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    メッセージ入力
-  </div>
-  <div class="panel-body">
-    <p>以下に入力し、ボタンを押すと内容が追加されます</p>
-  </div>
+
 <%= form_for(@message) do |f| %>
   <% if @message.errors.present? %>
     <div class="alert alert-danger">
@@ -36,17 +31,5 @@
       </ul>
     </div>
     <% end %>
-    <table class="table">
-      <tr>
-        <th class="info">名前</th>
-         <th>内容</th>
-         <th><%= f.submit class: "btn btn-sm btn-primary" %></th>
-      </tr>
-      <tr>
-        <td class="info"><%= f.text_field :name %></td>
-        <td><%= f.text_field :body %></td>
-        <td></td>
-      </tr>
-    </table>
+    
 <% end %>
-</div>
