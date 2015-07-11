@@ -7,10 +7,15 @@
   <% @messages.each do |message| %>
     <span class="label label-info"><%= message.name %></span>
     <%= message.body %>
+    (<%= link_to "edit" , edit_message_path(message)%>)
     <br>
     <% end %>
   </div>
 </div>
+
+<% #部分テンプレを読み込んでいる%>
+<%= render 'form' %>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     メッセージ入力
