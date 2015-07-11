@@ -18,7 +18,19 @@
   <div class="panel-body">
     <p>以下に入力し、ボタンを押すと内容が追加されます</p>
   </div>
-<%= form_for(Message.new) do |f| %>
+<%= form_for(@message) do |f| %>
+  <% if @message.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+      <%= @message.errors.full_messages.each do |full_message| %>
+      <li>
+        <%= full_message %>
+      </li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
     <table class="table">
       <tr>
         <th class="info">名前</th>
@@ -27,7 +39,7 @@
       </tr>
       <tr>
         <td class="info"><%= f.text_field :name %></td>
-        <td><%= f.text_area :body, size: "50x5" %></td>
+        <td><%= f.text_field :body %></td>
         <td></td>
       </tr>
     </table>
