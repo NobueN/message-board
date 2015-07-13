@@ -22,7 +22,8 @@ test:
 
 production:
   <<: *default
-#もともと  database: db/production.sqlite3
+#もともと   database: db/production.sqlite3
+# heroku  
   adapter: postgresql
   encoding: unicode
   pool: 5
